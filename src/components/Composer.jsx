@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Composer({ onSend }) {
+export default function Composer({ onSend, onTypingChange }) {
   const [draft, setDraft] = useState("");
 
   function send() {
@@ -32,6 +32,8 @@ export default function Composer({ onSend }) {
         value={draft}
         onChange={(e) => setDraft(e.target.value)}
         onKeyDown={handleKeyDown}
+        onFocus={() => onTypingChange(true)}
+        onBlur={() => onTypingChange(false)}
       />
       <button type="submit">Send</button>
     </form>
