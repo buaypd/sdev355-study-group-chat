@@ -1,6 +1,10 @@
 export default function Sidebar({ channels }) {
-  function handleChannelClick(channel)  {
+  function handleChannelClick(e, channel)  {
     console.log("clicked", channel.name);
+    console.log("type:", e.type);
+    console.log("target:", e.target.tagName, e.target.textContent);
+    console.log("a real browser event underneath:", e.nativeEvent instanceof MouseEvent);
+    
   }
   return (
     <nav className="sidebar">
@@ -9,7 +13,7 @@ export default function Sidebar({ channels }) {
         <button 
         key={channel.id} 
         className="channel"
-        onClick={() => handleChannelClick(channel)} 
+        onClick={(e) => handleChannelClick(e, channel)} 
         > 
           # {channel.name}
         </button>
