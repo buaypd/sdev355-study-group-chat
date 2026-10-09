@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Composer() {
+export default function Composer({ onSend }) {
   const [draft, setDraft] = useState("");
 
   function send() {
@@ -8,7 +8,7 @@ export default function Composer() {
     if (text === "") {
       return;
     }
-    console.log("send:", text);
+    onSend(text);
     setDraft("");
   }
 
@@ -18,12 +18,9 @@ export default function Composer() {
   }
 
   function handleKeyDown(e) {
-    if (e.key == "Enter" && !e.shiftKey) {
+    if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
       send();
-    }
-    if (e.key === "Escape") {
-      setDraft("");
     }
   }
 
